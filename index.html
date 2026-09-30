@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shailesh Gupta | Cybersecurity & Software Developer</title>
+<meta name="description" content="Portfolio of Shailesh Gupta — BCA student passionate about Cybersecurity and Software Development.">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+  :root{
+    --bg:#0a0e17; --card:rgba(255,255,255,.05); --border:rgba(255,255,255,.1);
+    --text:#e8ecf4; --muted:#93a0b5; --accent:#00d4ff; --accent2:#7c3aed;
+    --grad:linear-gradient(90deg,#00d4ff,#7c3aed);
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);overflow-x:hidden}
+  /* ---------- NAVBAR ---------- */
+  nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;
+      padding:16px 6%;background:rgba(10,14,23,.8);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);z-index:100}
+  .logo{font-size:1.3rem;font-weight:800}
+  .logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.95rem;transition:.3s}
+  .nav-links a:hover{color:var(--accent)}
+  .menu-btn{display:none;font-size:1.6rem;background:none;border:none;color:var(--text);cursor:pointer}
+  /* ---------- HERO ---------- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+        text-align:center;padding:0 6%;position:relative}
+  .hero::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+        background:radial-gradient(circle,rgba(0,212,255,.12),transparent 70%);top:-100px;left:-100px}
+  .hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+        background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%);bottom:-100px;right:-100px}
+  .avatar{width:110px;height:110px;border-radius:50%;background:var(--grad);display:flex;
+        align-items:center;justify-content:center;font-size:2.4rem;font-weight:800;color:#fff;
+        margin-bottom:24px;box-shadow:0 0 40px rgba(0,212,255,.35)}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800}
+  .hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .typing{font-size:clamp(1rem,3vw,1.4rem);color:var(--accent);margin:14px 0 22px;font-weight:600;min-height:30px}
+  .typing::after{content:'|';animation:blink 1s infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero p{max-width:600px;color:var(--muted);line-height:1.7}
+  .btn-row{margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+  .btn{padding:13px 30px;border-radius:50px;font-weight:600;text-decoration:none;transition:.3s;font-size:.95rem}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(0,212,255,.25)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(124,58,237,.4)}
+  .btn-ghost{border:1px solid var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  /* ---------- SECTIONS ---------- */
+  section{padding:90px 6%;max-width:1100px;margin:auto}
+  .tag{display:inline-block;padding:6px 18px;border:1px solid var(--border);border-radius:50px;
+       color:var(--accent);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+  h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:40px}
+  h2 span{color:var(--accent)}
+  .glass{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;
+         backdrop-filter:blur(8px);transition:.3s}
+  .glass:hover{transform:translateY(-6px);border-color:rgba(0,212,255,.4)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+  /* education timeline */
+  .timeline{position:relative;border-left:2px solid var(--border);margin-left:10px}
+  .t-item{padding:0 0 34px 28px;position:relative}
+  .t-item::before{content:'';position:absolute;left:-9px;top:4px;width:14px;height:14px;border-radius:50%;
+                  background:var(--grad);box-shadow:0 0 12px rgba(0,212,255,.6)}
+  .t-item h3{font-size:1.1rem}
+  .t-item .year{color:var(--accent);font-size:.85rem;margin:4px 0}
+  .t-item p{color:var(--muted);font-size:.92rem;line-height:1.6}
+  .score{display:inline-block;margin-top:8px;padding:4px 14px;border-radius:50px;
+         background:rgba(0,212,255,.1);color:var(--accent);font-size:.85rem;font-weight:600}
+  /* skills */
+  .skill h3{font-size:1.05rem;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+  .bar{height:8px;background:rgba(255,255,255,.08);border-radius:50px;overflow:hidden}
+  .bar div{height:100%;background:var(--grad);border-radius:50px;width:0;transition:width 1.4s ease}
+  .pct{font-size:.8rem;color:var(--muted);margin-top:6px;text-align:right}
+  /* contact */
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .contact-item{display:flex;gap:14px;align-items:center;margin-bottom:18px;color:var(--muted)}
+  .contact-item b{color:var(--text)}
+  input,textarea{width:100%;padding:13px 16px;margin-bottom:14px;background:rgba(255,255,255,.06);
+      border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;font-size:.95rem}
+  input:focus,textarea:focus{border-color:var(--accent)}
+  footer{text-align:center;padding:26px;border-top:1px solid var(--border);color:var(--muted);font-size:.88rem}
+  footer span{color:var(--accent)}
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(30px);transition:.7s ease}
+  .reveal.active{opacity:1;transform:none}
+  @media(max-width:768px){
+    .nav-links{position:fixed;top:60px;right:-100%;flex-direction:column;background:rgba(10,14,23,.97);
+               width:70%;height:100vh;padding:40px;transition:.4s;gap:22px}
+    .nav-links.open{right:0}
+    .menu-btn{display:block}
+    .contact-wrap{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Shailesh<span>.dev</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="profile.jpg">SG</div>
+  <h1>Hi, I'm <span>Shailesh Gupta</span></h1>
+  <div class="typing" id="typing"></div>
+  <p>BCA student at Govt. Arts & Science College, Raigarh — passionate about
+     <b style="color:var(--text)">Cybersecurity</b> and building clean, secure software.</p>
+  <div class="btn-row">
+    <a href="#contact" class="btn btn-primary">Hire Me</a>
+    <a href="#education" class="btn btn-ghost">My Journey ↓</a>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <span class="tag">About Me</span>
+  <h2>Who <span>Am I?</span></h2>
+  <div class="grid">
+    <div class="glass">
+      <h3>🎓 Student</h3>
+      <p style="color:var(--muted);line-height:1.8;margin-top:10px">
+        Currently pursuing <b style="color:var(--text)">Bachelor of Computer Applications (BCA)</b> at
+        Govt. Arts & Science College, Raigarh (Chhattisgarh). Strong academic foundation —
+        87.77% in 10th and 77.80% in 12th (Mathematics).</p>
+    </div>
+    <div class="glass">
+      <h3>🛡️ Cybersecurity Enthusiast</h3>
+      <p style="color:var(--muted);line-height:1.8;margin-top:10px">
+        Fascinated by how systems break and how to protect them. Learning networking,
+        Linux, and ethical hacking fundamentals to build a career in cyber defense.</p>
+    </div>
+    <div class="glass">
+      <h3>💻 Software Developer</h3>
+      <p style="color:var(--muted);line-height:1.8;margin-top:10px">
+        Enjoy writing clean code — from C programming basics to web development
+        with HTML, CSS & JavaScript. Always building, always learning.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="reveal">
+  <span class="tag">Education</span>
+  <h2>Academic <span>Journey</span></h2>
+  <div class="timeline">
+    <div class="t-item">
+      <h3>BCA — Bachelor of Computer Applications</h3>
+      <div class="year">2024 – Present</div>
+      <p>Govt. Arts & Science College, Raigarh (Chhattisgarh)<br>
+         Focus: Programming, Databases, Networking & Discrete Mathematics.</p>
+      <span class="score">Pursuing</span>
+    </div>
+    <div class="t-item">
+      <h3>Higher Secondary (12th) — Mathematics</h3>
+      <div class="year">Completed</div>
+      <p>Stream: Mathematics — built strong analytical & problem-solving base.</p>
+      <span class="score">77.80%</span>
+    </div>
+    <div class="t-item">
+      <h3>High School (10th)</h3>
+      <div class="year">Completed</div>
+      <p>Secondary education with distinction-level performance.</p>
+      <span class="score">87.77%</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  <span class="tag">Skills</span>
+  <h2>What I <span>Do</span></h2>
+  <div class="grid">
+    <div class="glass skill">
+      <h3>🛡️ Cybersecurity</h3>
+      <div class="bar"><div data-w="70"></div></div><div class="pct">70%</div>
+      <h3>🐧 Linux & Networking</h3>
+      <div class="bar"><div data-w="65"></div></div><div class="pct">65%</div>
+      <h3>💻 C Programming</h3>
+      <div class="bar"><div data-w="75"></div></div><div class="pct">75%</div>
+    </div>
+    <div class="glass skill">
+      <h3>🌐 HTML / CSS / JS</h3>
+      <div class="bar"><div data-w="80"></div></div><div class="pct">80%</div>
+      <h3>🐍 Python</h3>
+      <div class="bar"><div data-w="60"></div></div><div class="pct">60%</div>
+      <h3>🗄️ SQL / DBMS</h3>
+      <div class="bar"><div data-w="65"></div></div><div class="pct">65%</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <span class="tag">Contact</span>
+  <h2>Let's <span>Connect</span></h2>
+  <div class="contact-wrap">
+    <div class="glass">
+      <div class="contact-item">📧 <span><b>Email:</b> shailesh.gupta@example.com</span></div>
+      <div class="contact-item">📍 <span><b>Location:</b> Raigarh, Chhattisgarh, India</span></div>
+      <div class="contact-item">🎓 <span><b>College:</b> Govt. Arts & Science College, Raigarh</span></div>
+      <div class="contact-item">💼 <span><b>GitHub:</b> github.com/your-username</span></div>
+    </div>
+    <div class="glass">
+      <form onsubmit="event.preventDefault();alert('Thanks! Message demo hai — apna email laga ke Formspree se live kar sakte ho.');">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button class="btn btn-primary" style="border:none;cursor:pointer;width:100%">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 <span>Shailesh Gupta</span> — Built with ❤️ & pure HTML/CSS/JS</footer>
+
+<script>
+  // Typing effect
+  const roles = ["Cybersecurity Enthusiast 🛡️","Software Developer 💻","BCA Student 🎓","Tech Learner 🚀"];
+  let ri=0, ci=0, del=false;
+  (function type(){
+    const el = document.getElementById('typing');
+    const word = roles[ri];
+    el.textContent = word.slice(0, ci);
+    if(!del && ci < word.length){ ci++; setTimeout(type,80); }
+    else if(del && ci > 0){ ci--; setTimeout(type,40); }
+    else { del = !del; if(!del) ri=(ri+1)%roles.length; setTimeout(type, del?1400:300); }
+  })();
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('active');
+      e.target.querySelectorAll('.bar div').forEach(b => b.style.width = b.dataset.w + '%');
+    }
+  }), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(s => obs.observe(s));
+
+  // Close mobile menu on click
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.onclick = () => document.getElementById('navLinks').classList.remove('open'));
+</script>
+</body>
+</html>
